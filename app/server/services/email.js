@@ -28,6 +28,7 @@ var options = {
   host: EMAIL_HOST,
   port: EMAIL_PORT,
   secure: true,
+  rejectUnauthorized: false,
   auth: {
     user: EMAIL_USER,
     pass: EMAIL_PASS
