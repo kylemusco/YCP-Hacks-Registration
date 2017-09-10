@@ -88,11 +88,11 @@ controller.sendVerificationEmail = function(email, token, callback) {
 
   var options = {
     to: email,
-    subject: "[HACKATHON] - Verify your email"
+    subject: "YCP Hacks - Verify your email"
   };
 
   var locals = {
-    verifyUrl: ROOT_URL + '/verify/' + token
+    verifyUrl: 'https://ycphacks.herokuapp.com/verify/' + token
   };
 
   /**
