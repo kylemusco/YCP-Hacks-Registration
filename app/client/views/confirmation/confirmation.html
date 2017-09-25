@@ -95,6 +95,12 @@
             <input type="text" ng-model="user.confirmation.hardware">
           </div>
 
+          <!-- Convert removed fields to hidden inputs -->
+          <input type="hidden" ng-model="user.confirmation.hostNeededFri" value="false">
+          <input type="hidden" ng-model="user.confirmation.genderNeutral" value="false">
+          <input type="hidden" ng-model="user.confirmation.smokingFriendly" value="false">
+          <input type="hidden" ng-model="user.confirmation.catFriendly" value="false">
+          <input type="hidden" ng-model="user.confirmation.hostNotes" value="">
 
           <br>
           <br>
