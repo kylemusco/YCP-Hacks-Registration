@@ -166,7 +166,7 @@ controller.notifyAccepted = function(email, callback) {
 
     var locals = {
       title: 'Congratulations!',
-      body: 'You\'ve been accepted to YCP Hacks! Now sign in to confirm your spot',
+      body: 'You\'ve been accepted to YCP Hacks! Now sign in to confirm your spot.<br><br><br><a href="https://ycphacks.herokuapp.com/" class="m_-5508075326776368915pink m_-5508075326776368915button" style="background:rgb(115,150,94);padding:12px 24px;color:white;text-decoration:none" target="_blank">Confirm Your Spot!</a>'
     };
 
   /**
