@@ -42,10 +42,10 @@ controller.transporter = transporter;
 
 function sendOne(templateName, options, data, callback){
 
-  if (NODE_ENV === "dev") {
+  //if (NODE_ENV === "dev") {
     console.log(templateName);
     console.log(JSON.stringify(data, "", 2));
-  }
+  //}
 
   emailTemplates(templatesDir, function(err, template){
     if (err) {
@@ -125,7 +125,7 @@ controller.sendPasswordResetEmail = function(email, token, callback) {
 
   var options = {
     to: email,
-    subject: "[HACKATHON] - Password reset requested!"
+    subject: "YCP Hacks - Password reset requested!"
   };
 
   var locals = {
@@ -133,7 +133,7 @@ controller.sendPasswordResetEmail = function(email, token, callback) {
     subtitle: '',
     description: 'Somebody (hopefully you!) has requested that your password be reset. If ' +
       'this was not you, feel free to disregard this email. This link will expire in one hour.',
-    actionUrl: ROOT_URL + '/reset/' + token,
+    actionUrl: 'https://ycphacks.herokuapp.com/reset/' + token,
     actionName: "Reset Password"
   };
 
@@ -157,6 +157,37 @@ controller.sendPasswordResetEmail = function(email, token, callback) {
 
 };
 
+/* Notify users when they've been accepted */
+controller.notifyAccepted = function(email, callback) {
+  var options = {
+      to: email,
+      subject: "YCP Hacks - YOU'RE IN!"
+    };
+
+    var locals = {
+      title: 'Congratulations!',
+      body: 'You\'ve been accepted to YCP Hacks! Now sign in to confirm your spot',
+    };
+
+  /**
+   * Eamil-verify takes a few template values:
+   * {
+   *   verifyUrl: the url that the user must visit to verify their account
+   * }
+   */
+  sendOne('email-basic', options, locals, function(err, info){
+    if (err){
+      console.log(err);
+    }
+    if (info){
+      console.log(info.message);
+    }
+    if (callback){
+      callback(err, info);
+    }
+  });
+};
+
 /**
  * Send a password recovery email.
  * @param  {[type]}   email    [description]
@@ -166,7 +197,7 @@ controller.sendPasswordChangedEmail = function(email, callback){
 
   var options = {
     to: email,
-    subject: "[HACKATHON] - Your password has been changed!"
+    subject: "YCP Hacks - Your password has been changed!"
   };
 
   var locals = {

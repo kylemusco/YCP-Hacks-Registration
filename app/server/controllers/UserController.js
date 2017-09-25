@@ -644,6 +644,7 @@ UserController.resetPassword = function(token, password, callback){
  */
 UserController.admitUser = function(id, user, callback){
   Settings.getRegistrationTimes(function(err, times){
+
     User
       .findOneAndUpdate({
         _id: id,
@@ -659,6 +660,8 @@ UserController.admitUser = function(id, user, callback){
       },
       callback);
   });
+
+  Mailer.notifyAccepted(user.email);
 };
 
 /**
