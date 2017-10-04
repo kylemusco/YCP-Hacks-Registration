@@ -665,9 +665,9 @@ UserController.admitUser = function(id, user, callback){
   // Get user's email and notify them  User
   User.findById(id)
     .select('email')
-    .exec(function(err, email){
-      console.log("Email: " + JSON.stringify(email) );
-      //Mailer.notifyAccepted(email);
+    .exec(function(err, user){
+      console.log("Email: " + JSON.stringify(user.email) );
+      Mailer.notifyAccepted(user.email);
 
     }, callback);
 
