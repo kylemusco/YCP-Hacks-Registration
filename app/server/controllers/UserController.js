@@ -663,14 +663,10 @@ UserController.admitUser = function(id, user, callback){
   });
 
   // Get user's email and notify them  User
-  User.findById(id)
-    .select('email')
-    .exec(function(err, email){
-      Mailer.notifyAccepted(email);
+  User.findById(id, function(err,user) {
+      Mailer.notifyAccepted(user.email);
 
     }, callback);
-
-  
 };
 
 /**
