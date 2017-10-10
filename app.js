@@ -2,6 +2,7 @@
 require('dotenv').load({silent: true});
 
 var express         = require('express');
+var request         = require('request');
 
 // Middleware!
 var bodyParser      = require('body-parser');
@@ -44,7 +45,19 @@ require('./app/server/routes/auth')(authRouter);
 app.use('/auth', authRouter);
 
 app.get('/confirmedlist', function(req,res) {
-  res.send("derp");
+  request("http://ycphacks.herokuapp.com/api/users", function(err,response,body) {
+            var response = JSON.parse(body);
+            var emailList = "";
+
+            for( var i=0; i<response.length; i++ ) {
+                if( response[i].status.confirmed ) {
+                    
+                    emailList += response[i].email + ",";
+
+                }
+            }
+            res.send(emailList);
+    });
 });
 
 require('./app/server/routes')(app);
