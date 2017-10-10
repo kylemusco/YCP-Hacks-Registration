@@ -51,6 +51,8 @@ function canRegister(email, password, callback){
 
     // Check for emails.
     Settings.getWhitelistedEmails(function(err, emails){
+      return callback(null,true);
+      /*
       if (err || !emails){
         return callback(err);
       }
@@ -61,7 +63,7 @@ function canRegister(email, password, callback){
       }
       return callback({
         message: "Not a valid educational email."
-      }, false);
+      }, false);*/
     });
 
   });
