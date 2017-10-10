@@ -43,6 +43,10 @@ var authRouter = express.Router();
 require('./app/server/routes/auth')(authRouter);
 app.use('/auth', authRouter);
 
+app.get('/confirmedlist', function(req,res) {
+  res.send("derp");
+});
+
 require('./app/server/routes')(app);
 
 // listen (start app with node server.js) ======================================
