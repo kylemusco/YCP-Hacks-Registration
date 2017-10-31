@@ -71,13 +71,25 @@ app.get('/checkedin', function(req,res) {
             var user = response[i];
             if( user.status.checkedIn ) {
                 // Get name
-                responseList += user.profile.name + "\n";
+                if( user.profile.name != undefined ) {
+                    responseList += user.profile.name + "<br>";
+                } else {
+                    responseList += "No name given<br>";
+                }
 
                 // Get email
-                responseList += user.email + "\n";
+                if( user.email != undefined ) {
+                    responseList += user.email + "<br>";
+                } else {
+                    responseList += "No email given<br>";
+                }
 
                 // Get School
-                responseList += user.profile.school + "\n";
+                if( user.profile.school != undefined ) {
+                    responseList += user.profile.school + "<br>";
+                } else {
+                    responseList += "No school given<br>";
+                }
 
                 // Get address
                 if( user.confirmation.address != undefined ) {
@@ -87,7 +99,7 @@ app.get('/checkedin', function(req,res) {
                     responseList += "No address given";
                 }
 
-                responseList += "\n\n\n";
+                responseList += "<br><br><br><br>";
             }
         }
 
