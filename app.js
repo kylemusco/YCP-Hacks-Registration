@@ -99,7 +99,7 @@ app.get('/checkedin', function(req,res) {
                     responseList += "No address given";
                 }
 
-                responseList += "<br><br><br><br>";
+                responseList += "<br><br>";
             }
         }
 
