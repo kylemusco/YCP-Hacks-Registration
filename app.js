@@ -69,7 +69,7 @@ app.get('/checkedin', function(req,res) {
 
         for( var i=0; i<response.length; i++ ) {
             var user = response[i];
-            if( user.status.checkIn ) {
+            if( user.status.checkedIn ) {
                 // Get name
                 responseList += user.profile.name + "\n";
 
