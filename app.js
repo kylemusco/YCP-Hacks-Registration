@@ -76,6 +76,9 @@ app.get('/checkedin', function(req,res) {
                 // Get email
                 responseList += user.email + "\n";
 
+                // Get School
+                responseList += user.profile.school + "\n";
+
                 // Get address
                 if( user.confirmation.address != undefined ) {
                     var address = user.confirmation.address;
