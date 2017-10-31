@@ -44,6 +44,7 @@ var authRouter = express.Router();
 require('./app/server/routes/auth')(authRouter);
 app.use('/auth', authRouter);
 
+/* Returns a list of emails for users that are confirmed */
 app.get('/confirmedlist', function(req,res) {
   request("http://ycphacks.herokuapp.com/api/users", function(err,response,body) {
             var response = JSON.parse(body);
@@ -57,6 +58,37 @@ app.get('/confirmedlist', function(req,res) {
                 }
             }
             res.send(emailList);
+    });
+});
+
+/* Gets list of users that checked in and returns their account information */
+app.get('/checkedin', function(req,res) {
+    request("http://ycphacks.herokuapp.com/api/users", function(err,response,body) {
+        var response = JSON.parse(body);
+        var responseList = "";
+
+        for( var i=0; i<response.length; i++ ) {
+            var user = response[i];
+            if( user.status.checkIn ) {
+                // Get name
+                responseList += user.profile.name + "\n";
+
+                // Get email
+                responseList += user.email + "\n";
+
+                // Get address
+                if( user.confirmation.address != undefined ) {
+                    var address = user.confirmation.address;
+                    responseList += address.line1 + ", " + address.city + ", " + address.state + ", " + address.zip + ", " + address.country;
+                } else {
+                    responseList += "No address given";
+                }
+
+                responseList += "\n\n\n";
+            }
+        }
+
+        res.send(responseList);
     });
 });
 
