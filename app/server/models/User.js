@@ -28,8 +28,9 @@ var profile = {
   graduationYear: {
     type: String,
     enum: {
-      values: '2017 2018 2019 2020 2021'.split(' '),
-       /* values: new Date().getFullYear() + "",
+      values: '2018 2019 2020 2021 2022'.split(' '),
+       //Make values change dynamically so that don't need to change every year
+        /* values: new Date().getFullYear() + "",
                 new Date().getFullYear() + 1 + "",
                 new Date().getFullYear() + 2 + "",
                 new Date().getFullYear() + 3 + "",
